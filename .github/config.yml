@@ -1,0 +1,6 @@
+# Configuration for GitHub repository
+# This file enables community health files
+
+# Enable community health files
+community_health_files:
+  enabled: true 
