@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Remove the CSS variables that were overriding the app's colors */
+/* The app uses Tailwind classes for styling, so we don't need custom CSS variables */
+
+/* Ensure Tailwind utilities are available */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
