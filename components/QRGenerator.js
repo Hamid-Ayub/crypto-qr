@@ -72,78 +72,237 @@ const QRGenerator = () => {
   );
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 p-4">
-      {/* Configuration Panel */}
-      <ConfigurationPanel 
-        showConfig={showConfig}
-        setShowConfig={setShowConfig}
-        selectedCrypto={selectedCrypto}
-        setSelectedCrypto={setSelectedCrypto}
-        address={address}
-        setAddress={setAddress}
-        amount={amount}
-        setAmount={setAmount}
-        label={label}
-        setLabel={setLabel}
-        phoneTime={phoneTime}
-        setPhoneTime={setPhoneTime}
-        signalStrength={signalStrength}
-        setSignalStrength={setSignalStrength}
-        batteryLevel={batteryLevel}
-        setBatteryLevel={setBatteryLevel}
-        showWifi={showWifi}
-        setShowWifi={setShowWifi}
-        qrSize={qrSize}
-        setQrSize={setQrSize}
-        qrColor={qrColor}
-        setQrColor={setQrColor}
-        qrBackground={qrBackground}
-        setQrBackground={setQrBackground}
-        qrDotType={qrDotType}
-        setQrDotType={setQrDotType}
-        qrCornerType={qrCornerType}
-        setQrCornerType={setQrCornerType}
-        regenerateQR={regenerateQR}
-        qrErrorCorrection={qrErrorCorrection}
-        setQrErrorCorrection={setQrErrorCorrection}
-        qrLogoSize={qrLogoSize}
-        setQrLogoSize={setQrLogoSize}
-        qrMargin={qrMargin}
-        setQrMargin={setQrMargin}
-        qrCornerColor={qrCornerColor}
-        setQrCornerColor={setQrCornerColor}
-        qrDotColor={qrDotColor}
-        setQrDotColor={setQrDotColor}
-        qrShowLogo={qrShowLogo}
-        setQrShowLogo={setQrShowLogo}
-        qrGradientBackground={qrGradientBackground}
-        setQrGradientBackground={setQrGradientBackground}
-        qrGradientStart={qrGradientStart}
-        setQrGradientStart={setQrGradientStart}
-        qrGradientEnd={qrGradientEnd}
-        setQrGradientEnd={setQrGradientEnd}
-        qrAnimated={qrAnimated}
-        setQrAnimated={setQrAnimated}
-      />
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 p-4">
+      {/* Mobile Layout */}
+      <div className="md:hidden">
+        {/* Configuration Panel for Mobile */}
+        <ConfigurationPanel 
+          showConfig={showConfig}
+          setShowConfig={setShowConfig}
+          selectedCrypto={selectedCrypto}
+          setSelectedCrypto={setSelectedCrypto}
+          address={address}
+          setAddress={setAddress}
+          amount={amount}
+          setAmount={setAmount}
+          label={label}
+          setLabel={setLabel}
+          phoneTime={phoneTime}
+          setPhoneTime={setPhoneTime}
+          signalStrength={signalStrength}
+          setSignalStrength={setSignalStrength}
+          batteryLevel={batteryLevel}
+          setBatteryLevel={setBatteryLevel}
+          showWifi={showWifi}
+          setShowWifi={setShowWifi}
+          qrSize={qrSize}
+          setQrSize={setQrSize}
+          qrColor={qrColor}
+          setQrColor={setQrColor}
+          qrBackground={qrBackground}
+          setQrBackground={setQrBackground}
+          qrDotType={qrDotType}
+          setQrDotType={setQrDotType}
+          qrCornerType={qrCornerType}
+          setQrCornerType={setQrCornerType}
+          regenerateQR={regenerateQR}
+          qrErrorCorrection={qrErrorCorrection}
+          setQrErrorCorrection={setQrErrorCorrection}
+          qrLogoSize={qrLogoSize}
+          setQrLogoSize={setQrLogoSize}
+          qrMargin={qrMargin}
+          setQrMargin={setQrMargin}
+          qrCornerColor={qrCornerColor}
+          setQrCornerColor={setQrCornerColor}
+          qrDotColor={qrDotColor}
+          setQrDotColor={setQrDotColor}
+          qrShowLogo={qrShowLogo}
+          setQrShowLogo={setQrShowLogo}
+          qrGradientBackground={qrGradientBackground}
+          setQrGradientBackground={setQrGradientBackground}
+          qrGradientStart={qrGradientStart}
+          setQrGradientStart={setQrGradientStart}
+          qrGradientEnd={qrGradientEnd}
+          setQrGradientEnd={setQrGradientEnd}
+          qrAnimated={qrAnimated}
+          setQrAnimated={setQrAnimated}
+          isMobile={true}
+        />
 
-      {/* iPhone Frame with proper spacing */}
-      <div className="ml-4">
-        <PhoneFrame ref={phoneFrameRef} screenRef={phoneScreenRef}>
-          {/* Status Bar */}
-          <StatusBar 
-            phoneTime={phoneTime}
-            signalStrength={signalStrength}
-            batteryLevel={batteryLevel}
-            showWifi={showWifi}
-          />
-          
-          {/* Phone Content */}
-          <PhoneContent 
-            selectedCrypto={selectedCrypto}
-            qrRef={qrRef}
-            handleDownload={handleDownload}
-          />
-        </PhoneFrame>
+        {/* Phone Frame for Mobile */}
+        <div className="flex justify-center mt-4">
+          <PhoneFrame ref={phoneFrameRef} screenRef={phoneScreenRef} isMobile={true}>
+            <StatusBar 
+              phoneTime={phoneTime}
+              signalStrength={signalStrength}
+              batteryLevel={batteryLevel}
+              showWifi={showWifi}
+              isMobile={true}
+            />
+            <PhoneContent 
+              selectedCrypto={selectedCrypto}
+              qrRef={qrRef}
+              handleDownload={handleDownload}
+              isMobile={true}
+            />
+          </PhoneFrame>
+        </div>
+      </div>
+
+      {/* Tablet Layout */}
+      <div className="hidden md:flex lg:hidden items-center justify-center min-h-screen">
+        <div className="flex flex-col md:flex-row items-start space-y-4 md:space-y-0 md:space-x-6 max-w-6xl w-full">
+          {/* Configuration Panel for Tablet */}
+          <div className="w-full md:w-80 flex-shrink-0">
+            <ConfigurationPanel 
+              showConfig={showConfig}
+              setShowConfig={setShowConfig}
+              selectedCrypto={selectedCrypto}
+              setSelectedCrypto={setSelectedCrypto}
+              address={address}
+              setAddress={setAddress}
+              amount={amount}
+              setAmount={setAmount}
+              label={label}
+              setLabel={setLabel}
+              phoneTime={phoneTime}
+              setPhoneTime={setPhoneTime}
+              signalStrength={signalStrength}
+              setSignalStrength={setSignalStrength}
+              batteryLevel={batteryLevel}
+              setBatteryLevel={setBatteryLevel}
+              showWifi={showWifi}
+              setShowWifi={setShowWifi}
+              qrSize={qrSize}
+              setQrSize={setQrSize}
+              qrColor={qrColor}
+              setQrColor={setQrColor}
+              qrBackground={qrBackground}
+              setQrBackground={setQrBackground}
+              qrDotType={qrDotType}
+              setQrDotType={setQrDotType}
+              qrCornerType={qrCornerType}
+              setQrCornerType={setQrCornerType}
+              regenerateQR={regenerateQR}
+              qrErrorCorrection={qrErrorCorrection}
+              setQrErrorCorrection={setQrErrorCorrection}
+              qrLogoSize={qrLogoSize}
+              setQrLogoSize={setQrLogoSize}
+              qrMargin={qrMargin}
+              setQrMargin={setQrMargin}
+              qrCornerColor={qrCornerColor}
+              setQrCornerColor={setQrCornerColor}
+              qrDotColor={qrDotColor}
+              setQrDotColor={setQrDotColor}
+              qrShowLogo={qrShowLogo}
+              setQrShowLogo={setQrShowLogo}
+              qrGradientBackground={qrGradientBackground}
+              setQrGradientBackground={setQrGradientBackground}
+              qrGradientStart={qrGradientStart}
+              setQrGradientStart={setQrGradientStart}
+              qrGradientEnd={qrGradientEnd}
+              setQrGradientEnd={setQrGradientEnd}
+              qrAnimated={qrAnimated}
+              setQrAnimated={setQrAnimated}
+              isMobile={false}
+            />
+          </div>
+
+          {/* Phone Frame for Tablet */}
+          <div className="flex justify-center flex-1">
+            <PhoneFrame ref={phoneFrameRef} screenRef={phoneScreenRef} isMobile={false}>
+              <StatusBar 
+                phoneTime={phoneTime}
+                signalStrength={signalStrength}
+                batteryLevel={batteryLevel}
+                showWifi={showWifi}
+                isMobile={false}
+              />
+              <PhoneContent 
+                selectedCrypto={selectedCrypto}
+                qrRef={qrRef}
+                handleDownload={handleDownload}
+                isMobile={false}
+              />
+            </PhoneFrame>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop Layout */}
+      <div className="hidden lg:flex items-center justify-center min-h-screen">
+        {/* Configuration Panel */}
+        <ConfigurationPanel 
+          showConfig={showConfig}
+          setShowConfig={setShowConfig}
+          selectedCrypto={selectedCrypto}
+          setSelectedCrypto={setSelectedCrypto}
+          address={address}
+          setAddress={setAddress}
+          amount={amount}
+          setAmount={setAmount}
+          label={label}
+          setLabel={setLabel}
+          phoneTime={phoneTime}
+          setPhoneTime={setPhoneTime}
+          signalStrength={signalStrength}
+          setSignalStrength={setSignalStrength}
+          batteryLevel={batteryLevel}
+          setBatteryLevel={setBatteryLevel}
+          showWifi={showWifi}
+          setShowWifi={setShowWifi}
+          qrSize={qrSize}
+          setQrSize={setQrSize}
+          qrColor={qrColor}
+          setQrColor={setQrColor}
+          qrBackground={qrBackground}
+          setQrBackground={setQrBackground}
+          qrDotType={qrDotType}
+          setQrDotType={setQrDotType}
+          qrCornerType={qrCornerType}
+          setQrCornerType={setQrCornerType}
+          regenerateQR={regenerateQR}
+          qrErrorCorrection={qrErrorCorrection}
+          setQrErrorCorrection={setQrErrorCorrection}
+          qrLogoSize={qrLogoSize}
+          setQrLogoSize={setQrLogoSize}
+          qrMargin={qrMargin}
+          setQrMargin={setQrMargin}
+          qrCornerColor={qrCornerColor}
+          setQrCornerColor={setQrCornerColor}
+          qrDotColor={qrDotColor}
+          setQrDotColor={setQrDotColor}
+          qrShowLogo={qrShowLogo}
+          setQrShowLogo={setQrShowLogo}
+          qrGradientBackground={qrGradientBackground}
+          setQrGradientBackground={setQrGradientBackground}
+          qrGradientStart={qrGradientStart}
+          setQrGradientStart={setQrGradientStart}
+          qrGradientEnd={qrGradientEnd}
+          setQrGradientEnd={setQrGradientEnd}
+          qrAnimated={qrAnimated}
+          setQrAnimated={setQrAnimated}
+          isMobile={false}
+        />
+
+        {/* iPhone Frame with proper spacing */}
+        <div className="ml-4">
+          <PhoneFrame ref={phoneFrameRef} screenRef={phoneScreenRef} isMobile={false}>
+            <StatusBar 
+              phoneTime={phoneTime}
+              signalStrength={signalStrength}
+              batteryLevel={batteryLevel}
+              showWifi={showWifi}
+              isMobile={false}
+            />
+            <PhoneContent 
+              selectedCrypto={selectedCrypto}
+              qrRef={qrRef}
+              handleDownload={handleDownload}
+              isMobile={false}
+            />
+          </PhoneFrame>
+        </div>
       </div>
 
       {/* Screenshot Button */}

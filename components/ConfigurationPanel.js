@@ -51,7 +51,8 @@ const ConfigurationPanel = ({
   setQrGradientStart,
   qrGradientEnd,
   setQrGradientEnd,
-  qrAnimated
+  qrAnimated,
+  isMobile = false
 }) => {
   const [showCryptoDropdown, setShowCryptoDropdown] = useState(false);
 
@@ -61,21 +62,26 @@ const ConfigurationPanel = ({
     setAddress("");
   };
 
+  // Mobile positioning
+  const mobileClasses = isMobile 
+    ? "relative w-full max-w-none mb-4" 
+    : "absolute top-4 left-4 z-50 max-w-sm";
+
   return (
-    <div className="absolute top-4 left-4 z-50 max-w-sm">
-      <div className="bg-white rounded-xl shadow-lg p-4 max-h-[calc(100vh-2rem)] overflow-y-auto">
+    <div className={mobileClasses}>
+      <div className="bg-white rounded-xl shadow-lg p-4 max-h-[calc(100vh-2rem)] overflow-y-auto scrollbar-thin">
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-bold text-gray-900">Configuration</h2>
           <div className="flex items-center space-x-2">
             <button
               onClick={regenerateQR}
-              className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm font-medium"
+              className="px-3 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm font-medium"
             >
-              Generate QR
+              {isMobile ? "Generate" : "Generate QR"}
             </button>
             <button
               onClick={() => setShowConfig(!showConfig)}
-              className="text-gray-600 hover:text-gray-900"
+              className="text-gray-600 hover:text-gray-900 p-1"
             >
               {showConfig ? "▼" : "▶"}
             </button>
@@ -170,7 +176,7 @@ const ConfigurationPanel = ({
             {/* iPhone UI Settings */}
             <div className="border-b border-gray-200 pb-6">
               <h3 className="font-semibold text-gray-800 mb-4">iPhone UI Settings</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-4`}>
                 <div>
                   <label className="block text-sm text-gray-600 mb-2">Time</label>
                   <input
@@ -224,7 +230,7 @@ const ConfigurationPanel = ({
               <h3 className="font-semibold text-gray-800 mb-4">QR Code Settings</h3>
               <div className="space-y-4">
                 {/* Basic Settings */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-4`}>
                   <div>
                     <label className="block text-sm text-gray-600 mb-2">Size (px)</label>
                     <input
@@ -252,7 +258,7 @@ const ConfigurationPanel = ({
                 </div>
 
                 {/* Color Settings */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-4`}>
                   <div>
                     <label className="block text-sm text-gray-600 mb-2">QR Color</label>
                     <input
@@ -274,7 +280,7 @@ const ConfigurationPanel = ({
                 </div>
 
                 {/* Style Settings */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-4`}>
                   <div>
                     <label className="block text-sm text-gray-600 mb-2">Dot Type</label>
                     <select
@@ -305,7 +311,7 @@ const ConfigurationPanel = ({
                 </div>
 
                 {/* Image Settings */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-4`}>
                   <div>
                     <label className="block text-sm text-gray-600 mb-2">Logo Size (%)</label>
                     <input
@@ -332,7 +338,7 @@ const ConfigurationPanel = ({
                 </div>
 
                 {/* Advanced Settings */}
-                <div className="grid grid-cols-2 gap-4">
+                <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-4`}>
                   <div>
                     <label className="block text-sm text-gray-600 mb-2">Corner Color</label>
                     <input
@@ -389,7 +395,7 @@ const ConfigurationPanel = ({
 
                 {/* Gradient Settings (conditional) */}
                 {qrGradientBackground && (
-                  <div className="grid grid-cols-2 gap-4 p-4 bg-gray-50 rounded-lg">
+                  <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-2'} gap-4 p-4 bg-gray-50 rounded-lg`}>
                     <div>
                       <label className="block text-sm text-gray-600 mb-2">Gradient Start</label>
                       <input
