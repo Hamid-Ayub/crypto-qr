@@ -1,4 +1,4 @@
-# CashApp QR Generator
+# CashApp QR Generator (GEEKY HOBBY 🤓)
 
 A modern web application for generating QR codes with a beautiful phone frame interface. Built with Next.js, React, and Tailwind CSS.
 
